@@ -1,0 +1,46 @@
+﻿@model CarShowroom.Models.HoaDon
+@{
+    ViewBag.Title = "oderComplete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- order complete Page Start -->
+<section class="order-complete inner-page-sec-padding-bottom">
+    <div class="container bg-light">
+        <div class="row ">
+            <div class="col-12">
+                <div class="order-complete-message text-center">
+                    <h1>Thank you !</h1>
+                    <p>Đã nhận được đơn đặt hàng của bạn.</p>
+                </div>
+                <ul class="order-details-list">
+                    <li>Mã đơn hàng: <strong>@Model.MaHoaDon</strong></li>
+                    <li>Tên khách hàng: <strong>@ViewBag.khachhang.TenKhachHang.</strong></li>
+                    <li>Số thiện thoại: <strong>@ViewBag.khachhang.SoDienThoai</strong></li>
+                    <li>Chứng minh nhân dân: <strong>@ViewBag.khachhang.CMND</strong></li>
+                    <li>Ngày nhận: <strong>@Model.NgayNhan</strong></li>
+                    <li>Ngày trả: <strong>@Model.NgayTra</strong></li>
+                    @if (Model.TrangThaiThanhToan == 1)
+                    {
+                        <li>Trạng thái thanh toán: <strong class="text-success">Đã thanh toán</strong></li>
+                    }
+                    else
+                    {
+                        <li>Trạng thái thanh toán: <strong class="text-danger">Chưa thanh toán.</strong></li>
+                    }
+                    <li>Phương thức thanh toán: <strong>@Model.HinhThucThanhToan</strong></li>
+                </ul>
+                @*<h3 class="order-table-title">Chi tiết đơn hàng</h3>
+                <div class="table-responsive">
+                    @Html.Action("productDetailCheckOut", "Checkout", new { orderId = Model.ID })
+                </div>*@
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    ul>li{
+        padding:20px;
+    }
+</style>

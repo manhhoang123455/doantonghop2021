@@ -1,0 +1,89 @@
+﻿@model CarShowroom.Models.KhachHang
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="product-status mg-tb-15">
+    <div class="container-fluid">
+        <div class="row ">
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="product-status-wrap">
+                    <h2>Details</h2>
+
+                    <div>
+                        <h4>KhachHang</h4>
+                        <hr />
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.TaiKhoan.TenTaiKhoan)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.TaiKhoan.TenTaiKhoan)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.TenKhachHang)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.TenKhachHang)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.NamSinh)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.NamSinh)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.DiaChi)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.DiaChi)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.SoTaiKhoan)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.SoTaiKhoan)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.NganHang)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.NganHang)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.CMND)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.CMND)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.SoDienThoai)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.SoDienThoai)
+                            </dd>
+
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>confirm_orderPaymentOnline</title>
+</head>
+<body>
+    <div>
+        @if (ViewBag.status == 1)
+        {
+            <h3>Thanh toán online thành công <a href="~/">Về trang chủ</a></h3>
+        }
+        else
+        {
+            <h3>Thanh toán Thất bại vui lòng thử lại <a href="~/">Về trang chủ</a></h3>
+        }
+    </div>
+</body>
+</html>

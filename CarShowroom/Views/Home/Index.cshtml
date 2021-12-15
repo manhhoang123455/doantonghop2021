@@ -1,0 +1,85 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<CarShowroom.Models.Xe>
+@{
+    int countXe = 0;
+    int countRow = 0;
+}
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<section>
+    <div class="container ">
+        <div id="carouselExampleIndicators " class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="http://2.bp.blogspot.com/-byCybbV_2cU/Ua1Qt4iS-ZI/AAAAAAAABRc/i-NMfo3IUYI/s1600/blogsinhvien.info-Facebook-Timeline-12.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="http://2.bp.blogspot.com/-byCybbV_2cU/Ua1Qt4iS-ZI/AAAAAAAABRc/i-NMfo3IUYI/s1600/blogsinhvien.info-Facebook-Timeline-12.jpg" class="d-block w-100" alt="...">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="wrap">
+    <div class="section group">
+        <div class="cont span_2_of_3">
+            <h2 class="head">Sản phẩm thuê nhiều nhất</h2>
+            @for (int i = 0; i < Math.Ceiling((double)Model.Count / 3); i++)
+            {
+                <div class="top-box">
+                    @{
+                        countRow++;
+                    }
+                    @for (int j = countXe; j < (countRow * 3); j++)
+                    {
+
+                        <div class="col_1_of_3 span_1_of_3" style="position: relative">
+                            <a href="/Details?id=@Model[j].MaXe">
+                                <div class="inner_content clearfix">
+                                    <div class="product_image">
+                                        <a href="~/Home/Detail?maXe=@Model[j].MaXe"><img src="@Model[j].HinhAnh" alt="" width="300px" height="180px" /> </a>
+
+                                    </div>
+
+                                    <div class="price">
+                                        <div class="cart-left">
+                                            <p class="title">@Model[j].TenXe</p>
+                                            <div class="price1">
+                                                <span class="actual">@Model[j].GiaChoThue.ToString("0##,##0")/Ngày</span>
+                                            </div>
+                                        </div>
+                                        <a href="@Url.Action("Them","GioHang",new{id=@Model[j].MaXe,quantity=1})" class="cart-right" style="position: absolute; z-index: 999; right: 5%;top:75%"> </a>
+
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        if (countXe == Model.Count - 1)
+                        {
+                            break;
+                        }
+
+                        countXe++;
+                    }
+                    <div class="clear"></div>
+                </div>
+            }
+
+
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="custom-pagination">
+        <nav aria-label="Page navigation example">
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+            @Html.PagedListPager(Model, page => Url.Action("Index",
+                new { page, currentFilter = ViewBag.CurrentFilter }))
+        </nav>
+    </div>
+</div>

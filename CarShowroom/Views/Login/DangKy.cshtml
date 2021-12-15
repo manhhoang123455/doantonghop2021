@@ -1,0 +1,147 @@
+﻿@model CarShowroom.Models.DangKyViewModel
+@{
+    ViewBag.Title = "DangKy";
+    Layout = "";
+    SelectList list = ViewBag.listNH;
+}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<link href="~/Scripts/style.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+
+<div class="container">
+    <hr>
+    @using (Html.BeginForm())
+    {
+    
+<div class="card bg-light">
+    <div class="row">
+        <div class="col align-self-center">
+            <article class="card-body mx-auto" style="max-width: 700px;">
+                <h4 class="card-title mt-3 text-center">Tạo Tài Khoản</h4>
+                <p class="divider-text">
+                    <span class="bg-light"></span>
+                </p>
+                <form>
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        @Html.TextBoxFor(m => m.KhachHang.TenKhachHang, new { @class = "form-control", @placeholder = "Họ Tên", @type = "text" })
+                        @*<input name="" >*@
+                    </div> <!-- form-group// -->
+                    @Html.ValidationMessageFor(model => model.KhachHang.TenKhachHang, "", new { @class = "text-danger" })
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user-secret"></i> </span>
+                        </div>
+                        @Html.TextBoxFor(m => m.TaiKhoan.TenTaiKhoan, new { @class = "form-control", @placeholder = "Tên Tài Khoản", @type = "text" })
+
+                        @*<input name="" class="form-control" placeholder="Tên Tài Khoản" type="text">*@
+                    </div> <!-- form-group// -->
+                    @Html.ValidationMessageFor(model => model.TaiKhoan.TenTaiKhoan, "", new { @class = "text-danger" })
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                        </div>
+                        @Html.TextBoxFor(m => m.KhachHang.SoDienThoai, new { @class = "form-control", @placeholder = "Số điện thoại", @type = "number" })
+
+                        @*<input name="" class="form-control" placeholder="Số điện thoại" type="number">*@
+                    </div> <!-- form-group// -->
+                    @Html.ValidationMessageFor(model => model.KhachHang.SoDienThoai, "", new { @class = "text-danger" })
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+                        </div>
+                        @Html.TextBoxFor(m => m.KhachHang.NamSinh, new { @class = "form-control", @placeholder = "Năm Sinh", @type = "date" })
+
+                        @*<input class="form-control" placeholder="Năm Sinh" type="date">*@
+
+                    </div> <!-- form-group end.// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        </div>
+                        @Html.TextBoxFor(m => m.TaiKhoan.MatKhau, new { @class = "form-control", @placeholder = "Mật khẩu", @type = "password" })
+
+                        @*<input class="form-control" placeholder="Mật khẩu" type="password">*@
+                    </div> <!-- form-group// -->
+                    @Html.ValidationMessageFor(model => model.TaiKhoan.MatKhau, "", new { @class = "text-danger" })
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        </div>
+                        @Html.TextBoxFor(m => m.NhapLaiMatKhau, new { @class = "form-control", @placeholder = "Nhập lại mật khẩu", @type = "password" })
+
+                        @*<input class="form-control" name="nhaplaimk" placeholder="Nhập lại mật khẩu" type="password">*@
+                    </div> <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-address-card"></i> </span>
+                        </div>
+                        @Html.TextBoxFor(m => m.KhachHang.DiaChi, new { @class = "form-control", @placeholder = "Địa chỉ", @type = "text" })
+
+                        @*<input class="form-control" placeholder="Địa chỉ" type="text">*@
+                    </div> <!-- form-group// -->
+                    @Html.ValidationMessageFor(model => model.KhachHang.DiaChi, "", new { @class = "text-danger" })
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        @Html.TextBoxFor(m => m.KhachHang.CMND, new { @class = "form-control", @placeholder = "Số CMND", @type = "number" })
+
+                        @*<input class="form-control" placeholder="Số CMND" type="number">*@
+                    </div> <!-- form-group// -->
+                    @Html.ValidationMessageFor(model => model.KhachHang.CMND, "", new { @class = "text-danger" })
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+                        </div>
+                        @Html.DropDownListFor(m => m.KhachHang.NganHang, list, htmlAttributes: new { @class = "form-control" })
+                        @*<select class="form-control">
+                                <option selected=""> Chọn ngân hàng</option>
+                                <option>TPBank</option>
+                                <option>VietcomBank</option>
+                                <option>ViettinBank</option>
+                                <option>SeABank</option>
+                                <option>VPBank</option>
+                                <option>SacomBank</option>
+                                <option>TechcomBank</option>
+                                <option>BIDV</option>
+                                <option>DongABank</option>
+                            </select>*@
+                    </div> <!-- form-group end.// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user-circle"></i> </span>
+                        </div>
+                        @Html.TextBoxFor(m => m.KhachHang.SoTaiKhoan, new { @class = "form-control", @placeholder = "Số tài khoản", @type = "number" })
+                        @*<input class="form-control" placeholder="Số tài khoản" type="number">*@
+                    </div> <!-- form-group// -->
+                    @Html.ValidationMessageFor(model => model.KhachHang.SoTaiKhoan, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block"> Tạo Tài Khoản </button>
+                    </div> <!-- form-group// -->
+                    <p class="text-center">Bạn đã có tài khoản? <a href="/Login/Index">Đăng Nhập</a> </p>
+                </form>
+            </article>
+        </div>
+    </div>
+</div> <!-- card.// -->
+
+      
+
+    }
+
+</div>
+<!--container end.//-->
+
+<br>
+<br>

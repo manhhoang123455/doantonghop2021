@@ -1,0 +1,19 @@
+﻿@using System.Web.UI.WebControls
+@using CarShowroom.Models
+@{
+    var dsHangXe = ViewBag.dsHangXe as List<HangXe>;
+}
+<style>
+    a:hover {
+        font-size: 17px;
+        color: aqua;
+        font-weight: bold;
+        transition: 0.25s;
+    }
+</style>
+@foreach (var hangXe in dsHangXe)
+{
+    <a href="/home/Index?mahangxe=@hangXe.MaHangXe">@hangXe.TenHangXe</a>
+}
+
+

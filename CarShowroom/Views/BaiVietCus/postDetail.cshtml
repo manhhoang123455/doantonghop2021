@@ -1,0 +1,18 @@
+﻿@model CarShowroom.Models.BaiViet
+@{
+    ViewBag.Title = "Chi tiết bài viết";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="
+        https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v10.0&appId=184594436427854&autoLogAppEvents=1" 
+        nonce="Lpj1yZ4Z"></script>
+<section class="pt-3">
+    <div class="container bg-white pt-3 text-center">
+        <h2>@Model.title</h2>
+        <div class="pt-3"><img src="~/img/post/@Model.img" alt="Alternate Text" /></div>
+        <p class="pt-4">@Html.Raw(Model.detail)</p>
+    </div>
+    <div class="container">
+        <div class="fb-comments"  data-width="" data-numposts="5"></div>
+</section>

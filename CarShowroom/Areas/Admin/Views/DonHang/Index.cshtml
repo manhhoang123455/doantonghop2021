@@ -1,0 +1,73 @@
+﻿@model IEnumerable<CarShowroom.Models.khachhang_hoadon>
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+<div class="product-status mg-tb-15">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="product-status-wrap">
+                    <h4>Danh Sách đơn hàng</h4>
+                    <div class="add-product">
+
+                    </div>
+                    <table>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Khachhang.TenKhachHang)
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.HoaDon.NgayNhan)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.HoaDon.NgayTra)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.HoaDon.TongThanhTien)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Khachhang.SoDienThoai)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.HoaDon.MaKhachHang)
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th>
+                                    @Html.DisplayFor(model => item.Khachhang.TenKhachHang)
+                                </th>
+                                <td>
+                                    @item.HoaDon.NgayNhan.ToString("dd-MM-yyyy")
+                                </td>
+                                <td>
+                                    @item.HoaDon.NgayTra.ToString("dd-MM-yyyy")
+                                </td>
+                                <td>
+                                    @item.HoaDon.TongThanhTien.ToString("N0") VND
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Khachhang.SoDienThoai)
+                                </td>
+                                <td>
+                                    @item.Khachhang.MaKhachHang
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Xem Chi Tiết", "Details", new { id = item.HoaDon.MaHoaDon })
+                                </td>
+
+                            </tr>
+                        }
+
+
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

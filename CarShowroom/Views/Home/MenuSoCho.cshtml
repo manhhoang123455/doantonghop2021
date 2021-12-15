@@ -1,0 +1,13 @@
+﻿@using System.Web.UI.WebControls
+@using CarShowroom.Models
+@{
+    var dsSoCho = ViewBag.dsSoCho as List<int>;
+}
+
+@foreach (var soCho in dsSoCho)
+{
+    <a href="/home/index?socho=@soCho" class="soCho">@soCho Chỗ</a>
+}
+
+
+

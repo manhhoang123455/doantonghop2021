@@ -1,0 +1,201 @@
+﻿@model CarShowroom.Models.GioHang
+@{
+    ViewBag.Title = "Index";
+    decimal tongTien1Ngay = 0;
+    foreach (var item in Model.DoTrongGioHangs)
+    {
+        decimal giaTienMotDo = item.Xe.GiaChoThue * item.Quantity;
+        tongTien1Ngay += giaTienMotDo;
+
+    }
+    int soNgay;
+    if (!Model.NgayThue.HasValue && !Model.NgayTra.HasValue)
+    {
+        soNgay = 1;
+    }
+    else
+    {
+        soNgay = (Model.NgayTra.Value.Day - Model.NgayThue.Value.Day) + 1;
+    }
+
+}
+@if (ViewBag.LoiSoLuong != null)
+{
+    @Html.Raw(ViewBag.LoiSoLuong)
+}
+
+@if (ViewBag.ThongBaoTrong != null)
+{
+    @Html.Raw(ViewBag.ThongBaoTrong)
+}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<!------ Include the above in your HEAD tag ---------->
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+
+
+<div class="container mb-4">
+
+
+    <div class="row">
+        <div class="col-12">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"> </th>
+                            <th scope="col">Xe</th>
+                            <th scope="col">Hãng Xe</th>
+                            <th style="width: 200px" scope="col" class="text-center">Số Lượng</th>
+                            <th scope="col" class="text-right">Giá Tiền / Ngày</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (ViewBag.GioHangTrong != null)
+                        {
+                            <tr style="text-align: center; height: 100px">
+                                <td style="vertical-align: middle" colspan="6"><strong style="color: red; font-style: italic; font-size: 24px">@ViewBag.GioHangTrong</strong></td>
+                            </tr>
+                        }
+                        else
+                        {
+                            foreach (var item in Model.DoTrongGioHangs)
+                            {
+                                <tr style="height: 100px">
+                                    <td style="vertical-align: middle"><img src="@item.Xe.HinhAnh" width="100px" /> </td>
+                                    <td style="vertical-align: middle">@item.Xe.TenXe</td>
+                                    <td style="vertical-align: middle">@item.Xe.HangXe.TenHangXe</td>
+                                    <td style="width: 200px; vertical-align: middle">
+                                        <form action="/GioHang/Giam?id=@item.Xe.MaXe&currentQtt=@item.Quantity&quantity=1" method="post">
+                                            <input style="width: 20%; float: left; margin-left: 40px" class=" btn btn-primary" type="submit" value="-" />
+                                        </form>
+                                        <input style="width: 25%; float: left; background-color: white" class="form-control" value="@item.Quantity" disabled="disabled" />
+
+                                        <form action="/GioHang/Tang?id=@item.Xe.MaXe&currentQtt=@item.Quantity&quantity=1" method="post">
+
+                                            <input style="width: 20%; float: left" class=" btn btn-primary" type="submit" value="+" />
+
+                                        </form>
+
+                                    </td>
+                                    <td class="text-right" style="vertical-align: middle">@item.Xe.GiaChoThue.ToString("0##,##0")</td>
+
+                                    <td class="text-right" style="vertical-align: middle">
+                                        <form action="/GioHang/Xoa?id=@item.Xe.MaXe" method="post">
+                                            <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button>
+                                        </form>
+                                    </td>
+
+                                </tr>
+                            }
+                        }
+
+
+
+
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Tổng tiền theo ngày</td>
+                            <td class="text-right"><span id="tongTien1Ngay">@tongTien1Ngay.ToString("0##,##0")</span></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            @using (Html.BeginForm("ThanhToan", "GioHang", FormMethod.Post))
+                            {
+                                <td>
+
+                                    Ngày Thuê
+                                    <div>
+                                        @Html.EditorFor(model => model.NgayThue, new { htmlAttributes = new { @Value = @Model.NgayThue.HasValue ? @Model.NgayThue.Value.ToString("yyyy-MM-dd") : DateTime.Now.ToString("yyyy-MM-dd"), @class = "form-control", @name = "ngayThue" } })
+                                    </div>
+
+                                </td>
+
+                                <td>Ngày Trả @Html.EditorFor(model => model.NgayTra, new { htmlAttributes = new { @Value = @Model.NgayThue.HasValue ? @Model.NgayThue.Value.ToString("yyyy-MM-dd") : DateTime.Now.ToString("yyyy-MM-dd"), @class = "form-control", @style = "width:68%", @name = "ngayTra" } })</td>
+                                <td class="text-right">
+                                    <div style="margin-top: 30px" id="soNgay">@soNgay ngày</div>
+                                    <input id="btnThanhToan" type="submit" style="display: none" value="Thanh Toán" />
+                                </td>
+
+                            }
+
+                        </tr>
+                        @{
+                            decimal tongTienHoaDon = tongTien1Ngay * soNgay;
+                        }
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><strong>Tổng Tiền Hóa Đơn</strong></td>
+                            <td class="text-right"><strong id="tongTien">@tongTienHoaDon.ToString("0##,##0")</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col mb-2">
+            <div class="row">
+                <div class="col-sm-12  col-md-6">
+                    @*<button class="btn btn-block btn-light">Tiếp tục mua hàng</button>*@
+                    <a href="/" class="btn btn-block btn-light">Tiếp tục mua hàng</a>
+                </div>
+                <div class="col-sm-12 col-md-6 text-right">
+
+
+                    <input type="button" class="btn btn-lg btn-block btn-success text-uppercase" onclick="$('#btnThanhToan').trigger('click');" value="Thanh Toán" />
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+<script>
+
+    $(document).ready(function () {
+        console.log("ready!");
+
+        $("#NgayThue,#NgayTra").on("change", function () {
+            var ngayThue = new Date($('#NgayThue').val());
+            var ngayTra = new Date($('#NgayTra').val());
+
+            var tongTien1Ngay = $("#tongTien1Ngay").text().replace(new RegExp(',', 'g'), "");
+            if (ngayThue > ngayTra) {
+                alert("Ngày thuê không được lớn hơn ngày trả");
+            } else {
+                var ngay = (ngayTra - ngayThue) / (1000 * 60 * 60 * 24);
+                ngay = ngay + 1;
+                var tongTien = tongTien1Ngay * ngay;
+                tongTien = tongTien.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
+                $("#tongTien").text(tongTien);
+                $("#soNgay").text(ngay + " Ngày");
+            }
+        })
+
+        function formatCurrency(number) {
+            var n = number.split('').reverse().join("");
+            var n2 = n.replace(/\d\d\d(?!$)/g, "$&,");
+            return n2.split('').reverse().join('') + 'VNĐ';
+        }
+    });
+
+
+</script>
+

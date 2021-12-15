@@ -1,0 +1,88 @@
+﻿@model CarShowroom.Models.Xe
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="product-status mg-tb-15">
+    <div class="container-fluid">
+        <div class="row ">
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="product-status-wrap">
+                    <h2>Chi Tiết Thông Tin Xe</h2>
+
+                    <div>
+
+                        <hr />
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.HangXe.TenHangXe)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.HangXe.TenHangXe)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.TenXe)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.TenXe)
+                            </dd>
+
+
+
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.GiaNhap)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.GiaNhap)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.GiaChoThue)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.GiaChoThue)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.SoLuongXe)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.SoLuongXe)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.SoLuongXeDaThue)
+                            </dt>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.BienSo)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.SoLuongXeDaThue)
+                            </dd>
+                            <dd>
+                                @foreach (var item in Model.BienSo)
+                                {
+                                    @Html.DisplayFor(i => item.BienSoXe)
+                                    <br />
+                                }
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class=" float-right">
+                        <img src="@Model.HinhAnh" alt="Alternate Text" width="300px" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
